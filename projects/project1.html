@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GDS – GeoJSON API with JWT Security – Mawuli Tettey</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="project-page">
+  <header class="site-header">
+    <div class="container header-content">
+      <div class="logo">
+        <span class="logo-mark">MT</span>
+        <span class="logo-text">Mawuli Tettey</span>
+      </div>
+      <nav class="nav">
+        <a href="../index.html#projects">← Back to Projects</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="section">
+    <div class="container">
+      <article class="project-detail">
+        <h1>GDS – GeoJSON API with JWT Security</h1>
+
+        <p class="project-meta">
+          <strong>Role:</strong> Backend & GIS Developer<br>
+          <strong>Tech:</strong> Python, Flask, JWT, SQLAlchemy, GeoJSON<br>
+          <strong>Focus:</strong> Secure APIs for geographic data
+        </p>
+
+        <img src="../images/project1-screenshot.png"
+             alt="Screenshot of GDS GeoJSON API"
+             class="project-detail-image">
+
+        <h2>Overview</h2>
+        <p>
+          GDS is a service-oriented backend application for managing geographic data
+          stored in GeoJSON format. It exposes a set of REST API endpoints that let
+          clients create, read, update, and delete GeoJSON features, while keeping all
+          access secure using JSON Web Tokens (JWT).
+        </p>
+        <p>
+          The project is structured to be modular and maintainable, with separate
+          layers for models, routes, services, and utilities. This makes it easy to
+          extend with new geographic operations or additional data sources over time.
+        </p>
+
+        <h2>Problem & Motivation</h2>
+        <p>
+          I wanted a clean, reusable way to interact with GeoJSON data through an API
+          instead of manually opening files in a GIS tool every time. At the same time,
+          I needed proper authentication so that only authorised users could access or
+          edit sensitive geographic datasets.
+        </p>
+
+        <h2>Data & Domain</h2>
+        <ul>
+          <li>GeoJSON feature collections representing geospatial layers.</li>
+          <li>Typical content: boundaries, structures, or other vector layers.</li>
+          <li>Optional database backing (e.g. via SQLAlchemy) for persistence.</li>
+        </ul>
+
+        <h2>What the System Does</h2>
+        <h3>1. JWT Authentication</h3>
+        <ul>
+          <li>Every protected endpoint requires a valid JWT in the request headers.</li>
+          <li>Tokens are signed using a secret key defined in <code>JWT_SECRET_KEY</code>.</li>
+          <li>Only authenticated users can access API routes that expose or modify data.</li>
+        </ul>
+
+        <h3>2. GeoJSON Processing</h3>
+        <ul>
+          <li>Read and write GeoJSON files on disk.</li>
+          <li>Utility functions to manipulate features and properties.</li>
+          <li>Standardised format makes it easy to load the results in QGIS or other tools.</li>
+        </ul>
+
+        <h3>3. Modular Code Structure</h3>
+        <ul>
+          <li><strong>models/</strong>: data models and ORM definitions.</li>
+          <li><strong>routes/</strong>: API endpoint definitions.</li>
+          <li><strong>services/</strong>: business logic and GeoJSON operations.</li>
+          <li><strong>utils/</strong>: helpers for authentication, configuration, etc.</li>
+        </ul>
+
+        <h2>How I Implemented It</h2>
+        <ol>
+          <li>
+            <strong>Set up the backend stack</strong> using Python and Flask, plus
+            virtual environment and dependency management.
+          </li>
+          <li>
+            <strong>Designed the authentication flow</strong>:
+            user login → JWT issued → token checked on every request.
+          </li>
+          <li>
+            <strong>Implemented GeoJSON utilities</strong> to load and save feature
+            collections and to validate the format.
+          </li>
+          <li>
+            <strong>Organised the project into modules</strong> so that each part
+            (auth, data handling, routing) has a clear responsibility.
+          </li>
+        </ol>
+
+        <h2>Setup & Usage (Developer View)</h2>
+        <p>
+          The project is set up like a typical Python web service:
+        </p>
+        <ul>
+          <li>Clone the repo and create a virtual environment.</li>
+          <li>Install dependencies with <code>pip install -r requirements.txt</code>.</li>
+          <li>Set environment variables including <code>JWT_SECRET_KEY</code> and any database URLs.</li>
+          <li>Start the Flask app and interact with endpoints via HTTP clients or a frontend.</li>
+        </ul>
+
+        <h2>What I Learned</h2>
+        <ul>
+          <li>How to design a secure JWT-based authentication layer for an API.</li>
+          <li>How to structure a Python project into models, routes, services, and utilities.</li>
+          <li>Practical experience working with GeoJSON outside of desktop GIS tools.</li>
+        </ul>
+
+        <p class="project-back-link">
+          <a href="../index.html#projects">← Back to all projects</a>
+        </p>
+      </article>
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<h1>Country Structures Statistics</h1>
+
+<p class="project-meta">
+  <strong>Role:</strong> Data & GIS Developer<br>
+  <strong>Tech:</strong> Python, GeoJSON, Pandas, Matplotlib, Excel<br>
+  <strong>Focus:</strong> Automated building footprint statistics
+</p>
+
+<img src="../images/project2-screenshot.png"
+     alt="Screenshot of building structure statistics output"
+     class="project-detail-image">
+
+<h2>Overview</h2>
+<p>
+  This project analyses building footprint data for countries or regions and
+  automatically generates statistics on building sizes. It reads GeoJSON files
+  containing structures, computes building areas, groups them into size
+  intervals, and exports both Excel tables and PDF histograms.
+</p>
+<p>
+  The whole workflow is designed to be batch-friendly: drop new GeoJSON files
+  into the input folder, run the script, and all outputs and summaries are
+  generated automatically.
+</p>
+
+<h2>Problem & Motivation</h2>
+<p>
+  For comparing urban form across regions, it’s useful to understand the
+  distribution of building sizes (e.g. many small structures vs. fewer large
+  ones). Doing this manually for each region is slow and error-prone, so I
+  built a reusable tool that can process multiple countries or areas in one run.
+</p>
+
+<h2>Data & Inputs</h2>
+<ul>
+  <li>GeoJSON building footprints stored under <code>files/input/</code>.</li>
+  <li><code>metadata.csv</code> providing population, land area, and labels for each region.</li>
+  <li>Configurable settings in <code>config.py</code> for input/output paths.</li>
+</ul>
+
+<h2>Key Features</h2>
+<h3>1. GeoJSON Input Processing</h3>
+<ul>
+  <li>Automatically scans <code>files/input/</code> for <code>*.geojson</code> files.</li>
+  <li>Extracts areas for each building footprint.</li>
+</ul>
+
+<h3>2. Area Binning</h3>
+<ul>
+  <li>Groups building areas from 0–900 m² into fixed-size bins (default 5 m²).</li>
+  <li>Handles buildings larger than 900 m² in an overflow bucket.</li>
+</ul>
+
+<h3>3. Excel Export</h3>
+<ul>
+  <li>Writes an interval vs. count table for each region into <code>files/output/</code>.</li>
+  <li>Makes the data easy to use in spreadsheets or further analysis.</li>
+</ul>
+
+<h3>4. PDF Histogram Generation</h3>
+<ul>
+  <li>Creates clear bar charts with labelled axes and counts.</li>
+  <li>Optionally includes population and land area summaries.</li>
+  <li>Uses <code>metadata.csv</code> to match each GeoJSON file with the correct stats.</li>
+</ul>
+
+<h3>5. Command-Line Batch Mode</h3>
+<ul>
+  <li>Run everything with a single command: <code>python main.py</code>.</li>
+  <li>Designed to be triggered from VS Code or the terminal.</li>
+</ul>
+
+<h2>How I Implemented It</h2>
+<ol>
+  <li>Defined configuration in <code>config.py</code> for input/output folders.</li>
+  <li>Used GeoJSON parsing and geometry libraries to compute building areas.</li>
+  <li>Implemented an area-binning function so the bin size is easy to change.</li>
+  <li>Used Pandas to build interval tables and export them to Excel.</li>
+  <li>Used Matplotlib to create histograms and save them as PDFs.</li>
+</ol>
+
+<h2>What I Learned</h2>
+<ul>
+  <li>How to design a reproducible batch-processing workflow for spatial data.</li>
+  <li>How to connect geometric operations with statistical summaries and visualisations.</li>
+  <li>Practical experience handling metadata joins and matching filenames to reference tables.</li>
+</ul>

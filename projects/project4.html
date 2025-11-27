@@ -1,0 +1,102 @@
+<h1>Country Structures & Functional Map Analysis</h1>
+
+<p class="project-meta">
+  <strong>Role:</strong> Lead Geospatial Analyst & Developer<br>
+  <strong>Tech:</strong> Python, GeoPandas, Shapely, Matplotlib, Voronoi, CSV/GeoJSON<br>
+  <strong>Focus:</strong> Integrated structural, population, and boundary analysis
+</p>
+
+<!-- You can add a screenshot later -->
+<!-- <img src="../images/project4-screenshot.png" alt="Screenshot of analysis outputs" class="project-detail-image"> -->
+
+<h2>Overview</h2>
+<p>
+  This project combines building structures, population data, roads, and electoral
+  boundaries into a single analysis pipeline. It generates functional maps, detects
+  misalignments between electoral areas and constituencies, and produces multiple
+  exports: PDFs, GeoJSONs, and CSV summaries.
+</p>
+<p>
+  The core logic lives in <code>utils/analysis.py</code>, which orchestrates data
+  loading, spatial cleaning, Voronoi generation, shading, map rendering, and
+  exporting.
+</p>
+
+<h2>Main Objectives</h2>
+<ul>
+  <li>Validate that polling units and structures fall inside the correct boundaries.</li>
+  <li>Produce shaded maps based on structure counts or population.</li>
+  <li>Overlay roads to give better geographic context.</li>
+  <li>Detect potentially misaligned electoral areas without requiring perfect boundaries.</li>
+</ul>
+
+<h2>Key Features</h2>
+<h3>1. Boundary-Based Spatial Processing</h3>
+<ul>
+  <li>Checks which points fall inside or outside expected boundaries.</li>
+  <li>Exports separate files for in-boundary and out-of-boundary points.</li>
+</ul>
+
+<h3>2. Voronoi Polygon Generation</h3>
+<ul>
+  <li>Builds Voronoi polygons from points (e.g., structures or stations).</li>
+  <li>Clips them to country/region/constituency geometry.</li>
+  <li>Rounds coordinates for clean GeoJSON output.</li>
+  <li>Handles duplicate or coincident points using jitter with a configurable distance.</li>
+</ul>
+
+<h3>3. Automated Functional Map Production</h3>
+<ul>
+  <li>Generates maps at multiple levels: country, div one, div two, div three.</li>
+  <li>Produces formatted PDFs with labels, legends, and optional road overlays.</li>
+</ul>
+
+<h3>4. Shading by Structures or Population</h3>
+<ul>
+  <li>Groups polygons into buckets based on structure counts or population.</li>
+  <li>Applies a colour ramp (e.g. light-to-dark red) to show intensity.</li>
+</ul>
+
+<h3>5. Road Network Overlay</h3>
+<ul>
+  <li>Loads road networks from GeoJSON files.</li>
+  <li>Overlays primary, secondary, tertiary, and service roads on the maps.</li>
+</ul>
+
+<h3>6. Misalignment Detection</h3>
+<ul>
+  <li>Identifies EAs that may belong closer to a different constituency.</li>
+  <li>Uses centroid-to-point distances as a heuristic where boundaries are imperfect.</li>
+  <li>Outputs CSV summaries so potential issues can be reviewed manually.</li>
+</ul>
+
+<h3>7. Exports</h3>
+<ul>
+  <li>Voronoi polygons as GeoJSON.</li>
+  <li>Points inside/outside boundaries.</li>
+  <li>Misaligned EA reports.</li>
+  <li>Functional maps as PDF files.</li>
+</ul>
+
+<h2>Configuration & Workflow</h2>
+<p>
+  Key settings (such as <code>data_file_name</code>, <code>roads_file_name</code>,
+  road classes, and jitter distance) are defined in <code>utils/analysis.py</code>.
+  Output folders include:
+</p>
+<ul>
+  <li><code>files/&lt;country&gt;/functional_maps/</code></li>
+  <li><code>files/geojson files/</code></li>
+  <li><code>files/outputs/</code></li>
+</ul>
+<p>
+  The script is CLI-ready: you can run <code>python analysis.py</code> and set up
+  the country/region/division choices in the <code>__main__</code> block.
+</p>
+
+<h2>What I Learned</h2>
+<ul>
+  <li>How to design a more “end-to-end” spatial analytics pipeline, from raw data to exported maps and QA reports.</li>
+  <li>How to combine different geospatial layers (points, polygons, roads) in a single workflow.</li>
+  <li>How to use heuristics to detect misalignments in electoral data, even when boundary files are imperfect.</li>
+</ul>

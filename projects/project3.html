@@ -1,0 +1,95 @@
+<h1>Functional Electoral Map Generator</h1>
+
+<p class="project-meta">
+  <strong>Role:</strong> Geospatial Developer<br>
+  <strong>Tech:</strong> Python, GeoPandas, Shapely, Matplotlib, Cartopy, SQLAlchemy<br>
+  <strong>Focus:</strong> Voronoi-based electoral maps for Ghana and beyond
+</p>
+
+<img src="../images/project3-screenshot.png"
+     alt="Screenshot of functional electoral maps"
+     class="project-detail-image">
+
+<h2>Overview</h2>
+<p>
+  The Functional Electoral Map Generator is a toolchain for building high-quality
+  functional maps for elections. It takes polling station and electoral area data,
+  matches them to geographic boundaries, constructs Voronoi polygons around stations,
+  and exports both GeoJSON and publication-ready PDF maps.
+</p>
+<p>
+  Although it started with Ghana, the system also supports country setups for
+  Nigeria and Kenya by adapting labels and levels (regions, constituencies, wards, etc.).
+</p>
+
+<h2>Goals</h2>
+<ul>
+  <li>Visualise polling stations and their functional catchment areas.</li>
+  <li>Produce consistent, labelled maps for regions, constituencies, and countries.</li>
+  <li>Integrate election results so maps can show winning parties at station level.</li>
+</ul>
+
+<h2>Data Sources</h2>
+<ul>
+  <li>
+    <strong>Polling stations:</strong> loaded from a database (via
+    <code>StationMasterItem</code>) and CSV files under <code>files/inputs/{country}/</code>.
+  </li>
+  <li>
+    <strong>Boundaries:</strong> GeoJSON files under
+    <code>files/boundaries/{country}/</code>.
+  </li>
+  <li>
+    <strong>Election results:</strong> columns per party (e.g. NPP, NDC) in the CSVs.
+  </li>
+</ul>
+
+<h2>Key Features</h2>
+<h3>1. Database + CSV Integration</h3>
+<ul>
+  <li>Reads station records from a database via SQLAlchemy models.</li>
+  <li>Merges in EA codes, names, and other attributes from CSV files.</li>
+</ul>
+
+<h3>2. Voronoi Functional Maps</h3>
+<ul>
+  <li>Builds Voronoi polygons around polling station points.</li>
+  <li>Clips polygons to the relevant administrative boundary (country, region, etc.).</li>
+  <li>Jitters overlapping coordinates so stations at the same point can still be seen.</li>
+</ul>
+
+<h3>3. Multi-Level Mapping</h3>
+<ul>
+  <li>Country-wide maps of all stations or electoral areas.</li>
+  <li>Region/state-level maps (div_one).</li>
+  <li>Constituency/LGA-level maps (div_two).</li>
+</ul>
+
+<h3>4. Election Result Visualisation</h3>
+<ul>
+  <li>Calculates the winning party per station for result maps.</li>
+  <li>Uses a party colour map to shade each Voronoi polygon.</li>
+  <li>Supports multiple parties including NPP, NDC, and others.</li>
+</ul>
+
+<h3>5. High-Resolution Outputs</h3>
+<ul>
+  <li>Exports large-format PDFs with legends, labels, and counts.</li>
+  <li>Stamps each page with a logo and uses custom fonts for titles.</li>
+  <li>Exports GeoJSON (e.g. <code>greater_accra.geojson</code>) for GIS use.</li>
+</ul>
+
+<h2>Usage Pattern</h2>
+<ol>
+  <li>Prepare boundaries and input CSVs in the expected folder layout.</li>
+  <li>Configure country, region, or constituency in the main script.</li>
+  <li>Uncomment the desired function call (e.g. <code>pc_div_two_map</code> for station results).</li>
+  <li>Run <code>python -m utils.2024elections</code> to generate maps and GeoJSON outputs.</li>
+</ol>
+
+<h2>What I Learned</h2>
+<ul>
+  <li>How to combine Voronoi geometry with real administrative boundaries.</li>
+  <li>How to design a flexible mapping pipeline that can support multiple countries.</li>
+  <li>How to produce publication-ready cartographic outputs directly from Python.</li>
+</ul>

@@ -1,40 +1,226 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Mawuli Tettey • Portfolio</title>
-  <style>
-    body { font-family: Arial; margin: 40px; background: #f4f4f4; }
-    h1 { color: #1a73e8; }
-    .project { margin-bottom: 20px; background: white; padding: 20px; border-radius: 10px; }
-    a { font-weight: bold; color: #333; }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mawuli Tettey – Portfolio</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+  <!-- ===== HEADER / NAV ===== -->
+  <header class="site-header">
+    <div class="container header-content">
+      <div class="logo">
+        <span class="logo-mark">MT</span>
+        <span class="logo-text">Mawuli Tettey</span>
+      </div>
+      <nav class="nav">
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
 
-<h1>Hello, I'm Mawuli Tettey 👋</h1>
-<p>I build geospatial data tools, election mapping systems, and statistical automation scripts.</p>
+  <!-- ===== HERO SECTION ===== -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-text">
+        <p class="hero-eyebrow">Portfolio</p>
+        <h1>Hi, I'm <span class="highlight">Mawuli</span>.</h1>
+        <h2 class="hero-subtitle">Data / GIS Analyst & Problem Solver.</h2>
+        <p class="hero-description">
+          I use data, maps and code to explore patterns, answer questions and support better decisions.
+          Below are some of my projects using tools like Python, QGIS, Excel, and more.
+        </p>
+        <div class="hero-actions">
+          <a href="#projects" class="btn primary">View Projects</a>
+          <a href="#contact" class="btn secondary">Get in Touch</a>
+        </div>
+      </div>
 
-<hr>
+      <div class="hero-photo">
+        <img src="images/profile.jpg" alt="Photo of Mawuli Tettey">
+      </div>
+    </div>
+  </section>
 
-<h2>📌 Featured Projects</h2>
+  <!-- ===== SKILLS ===== -->
+  <section id="skills" class="section">
+    <div class="container">
+      <h2>Skills & Tools</h2>
+      <p class="section-intro">
+        A snapshot of technologies and skills I use most often.
+      </p>
+      <div class="skills-grid">
+        <div class="skill-group">
+          <h3>Data & GIS</h3>
+          <ul>
+            <li>QGIS</li>
+            <li>Geospatial analysis</li>
+            <li>Raster & vector processing</li>
+            <li>Map design & visualization</li>
+          </ul>
+        </div>
+        <div class="skill-group">
+          <h3>Programming</h3>
+          <ul>
+            <li>Python (pandas, geopandas, rasterio, etc.)</li>
+            <li>SQL (data querying & cleaning)</li>
+            <li>Automation scripts</li>
+          </ul>
+        </div>
+        <div class="skill-group">
+          <h3>Analysis & Reporting</h3>
+          <ul>
+            <li>Data cleaning & wrangling</li>
+            <li>Exploratory data analysis</li>
+            <li>Charts & dashboards</li>
+            <li>Excel (formulas, pivot tables)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<div class="project">
-  <h3>🗳️ Election Functional Map Generator</h3>
-  <p>Generates Voronoi cell electoral maps color-coded by winning party with margin visualization.</p>
-  <a href="https://github.com/mawulitettey/election-functional-map">View Project →</a>
+  <!-- ===== PROJECTS ===== -->
+  <section id="projects" class="section alt">
+    <div class="container">
+      <h2>Projects</h2>
+      <p class="section-intro">
+        A selection of projects showing how I work with data, maps, and code.
+        Click any card to view the full write-up.
+      </p>
+
+      <div class="projects-grid">
+  <!-- Project 1 -->
+  <article class="project-card">
+    <img src="images/project1-screenshot.png" alt="GeoJSON API with JWT auth screenshot" class="project-image">
+    <div class="project-content">
+      <h3>GDS – GeoJSON API with JWT Security</h3>
+      <p>
+        Service-oriented backend for managing GeoJSON data with secure JWT-protected API endpoints and modular utilities for handling geographic operations.
+      </p>
+      <div class="project-tags">
+        <span class="tag">Python</span>
+        <span class="tag">Flask</span>
+        <span class="tag">GeoJSON</span>
+        <span class="tag">JWT</span>
+      </div>
+      <a href="projects/project1.html" class="project-link">View project →</a>
+    </div>
+  </article>
+
+  <!-- Project 2 -->
+  <article class="project-card">
+    <img src="images/project2-screenshot.png" alt="Country structure statistics screenshot" class="project-image">
+    <div class="project-content">
+      <h3>Country Structures Statistics</h3>
+      <p>
+        Batch tool that reads building footprints, bins areas, and automatically exports Excel tables and PDF histograms for each country or region.
+      </p>
+      <div class="project-tags">
+        <span class="tag">Python</span>
+        <span class="tag">GeoJSON</span>
+        <span class="tag">Pandas</span>
+        <span class="tag">Matplotlib</span>
+      </div>
+      <a href="projects/project2.html" class="project-link">View project →</a>
+    </div>
+  </article>
+
+  <!-- Project 3 -->
+  <article class="project-card">
+    <img src="images/project3-screenshot.png" alt="Functional electoral maps screenshot" class="project-image">
+    <div class="project-content">
+      <h3>Functional Electoral Map Generator</h3>
+      <p>
+        Pipeline for generating Voronoi-based electoral maps, matching polling stations to boundaries and exporting GeoJSON + high-resolution election maps.
+      </p>
+      <div class="project-tags">
+        <span class="tag">Python</span>
+        <span class="tag">GeoPandas</span>
+        <span class="tag">QGIS</span>
+        <span class="tag">Cartography</span>
+      </div>
+      <a href="projects/project3.html" class="project-link">View project →</a>
+    </div>
+  </article>
+
+  <!-- Project 4 -->
+  <article class="project-card">
+    <div class="project-placeholder">
+      <span>Map analysis in progress</span>
+    </div>
+    <div class="project-content">
+      <h3>Country Structures & Functional Map Analysis</h3>
+      <p>
+        Advanced geospatial analysis system that combines structures, population, roads, and boundaries to create shaded functional maps and misalignment reports.
+      </p>
+      <div class="project-tags">
+        <span class="tag">Python</span>
+        <span class="tag">GeoPandas</span>
+        <span class="tag">Voronoi</span>
+        <span class="tag">Spatial QA</span>
+      </div>
+      <a href="projects/project4.html" class="project-link">View project →</a>
+    </div>
+  </article>
 </div>
 
-<div class="project">
-  <h3>📍 Polling Unit Data Extractor</h3>
-  <p>Selenium-powered script to extract state-LGA-ward-PU coordinates from GoVote Nigeria and INEC.</p>
-  <a href="https://github.com/mawulitettey/polling-unit-data">View Project →</a>
-</div>
 
-<div class="project">
-  <h3>📊 Country Structures Statistics</h3>
-  <p>Statistical loading, processing, and visualization scripts for national-level datasets.</p>
-  <a href="https://github.com/mawulitettey/country-structures-statistics">View Project →</a>
-</div>
+  <!-- ===== ABOUT ===== -->
+  <section id="about" class="section">
+    <div class="container about-grid">
+      <div>
+        <h2>About Me</h2>
+        <p>
+          I’m interested in how data and maps can be used to understand places,
+          people, and patterns. I enjoy cleaning messy datasets, building repeatable
+          analysis workflows, and turning findings into clear maps, charts, and reports.
+        </p>
+        <p>
+          Recently I’ve been working a lot with geospatial data in QGIS and Python,
+          experimenting with ways to automate repetitive mapping tasks and compare
+          different datasets visually.
+        </p>
+      </div>
+      <div class="about-extra">
+        <h3>What I’m looking for</h3>
+        <p>
+          Opportunities to work on data-driven projects, especially those involving
+          maps, public data, or impact-focused analysis.
+        </p>
+      </div>
+    </div>
+  </section>
 
+  <!-- ===== CONTACT ===== -->
+  <section id="contact" class="section alt">
+    <div class="container">
+      <h2>Contact</h2>
+      <p class="section-intro">
+        If you’d like to talk about my work or a potential project, feel free to reach out.
+      </p>
+      <div class="contact-links">
+        <!-- change these to your real links -->
+        <a href="mailto:youremail@example.com" class="contact-item">Email</a>
+        <a href="https://github.com/mawulitettey" class="contact-item" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com" class="contact-item" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span id="year"></span> Mawuli Tettey. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Set current year in footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
